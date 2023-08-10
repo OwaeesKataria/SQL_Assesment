@@ -1,0 +1,89 @@
+CREATE TABLE Trainer_Info (
+    Trainer_Id CHAR(20) UNIQUE,
+    Salutation CHAR(7),
+    Trainer_Name CHAR(30),
+    Trainer_Location CHAR(30),
+    Trainer_Track CHAR(15),
+    Trainer_Qualification CHAR(100),
+    Trainer_Experiance INTEGER(11),
+    Trainer_Email CHAR(100),
+    Trainer_Password CHAR(20)
+);
+
+CREATE TABLE Batch_Info (
+  Batch_Id CHAR(20) UNIQUE,
+  Batch_Owner CHAR(30),
+  Batch_BU_Name CHAR(30)
+);  
+
+CREATE TABLE Module_Info (
+  Module_Id CHAR(20) UNIQUE,
+  Module_Name CHAR(40),
+  Module_Duration INTEGER(11)
+); 
+
+CREATE TABLE associate_info (
+  Associate_Id CHAR(20) UNIQUE,
+  Salutation CHAR(7),
+  Associate_Name CHAR(30),
+  Associate_Location CHAR(30),
+  Associate_Track CHAR(15),
+  Associate_Qualification CHAR(200),
+  Associate_Email CHAR(100),
+  Associate_Password CHAR(20)
+); 
+
+CREATE TABLE questions (
+  Question_Id CHAR(20) UNIQUE,
+  Module_Id CHAR(20),
+  Question_Text VARCHAR(900),
+  KEY Module_Id_idx (Module_Id),
+  CONSTRAINT Module_Id FOREIGN KEY (Module_Id) REFERENCES module_info (Module_Id)
+);
+
+CREATE TABLE associate_status (
+  Associate_Id CHAR(20),
+  Module_Id_1 CHAR(20),
+  Start_Date CHAR(20),
+  End_Date CHAR(20),
+  AFeedbackGiven CHAR(20),
+  TFeedbackGiven CHAR(20),
+  KEY Associate_Id_idx (Associate_Id),
+  KEY Module_Id_1_idx (Module_Id_1),
+  CONSTRAINT Associate_Id FOREIGN KEY (Associate_Id) REFERENCES associate_info (Associate_Id),
+  CONSTRAINT Module_Id_1 FOREIGN KEY (Module_Id_1) REFERENCES module_info (Module_Id)
+);
+
+CREATE TABLE trainer_feedback (
+  Trainer_Id CHAR(20),
+  Question_Id CHAR(20),
+  Batch_Id CHAR(20),
+  Module_Id_2 CHAR(20),
+  Trainer_Rating int(11),
+  KEY Trainer_Id_idx (Trainer_Id),
+  KEY Question_Id_idx (Question_Id),
+  KEY Batch_Id_idx (Batch_Id),
+  KEY Module_Id_2_idx (Module_Id_2),
+  CONSTRAINT Trainer_Id FOREIGN KEY (Trainer_Id) REFERENCES trainer_info (Trainer_Id),
+  CONSTRAINT Question_Id FOREIGN KEY (Question_Id) REFERENCES questions (Question_Id),
+  CONSTRAINT Batch_Id FOREIGN KEY (Batch_Id) REFERENCES batch_info (Batch_Id),
+  CONSTRAINT Module_Id_2 FOREIGN KEY (Module_Id_2) REFERENCES module_info (Module_Id)
+);
+
+CREATE TABLE associate_feedback (
+  Associate_Id_1 CHAR(20),
+  Question_Id_1 CHAR(20),
+  Module_Id_3 CHAR(20),
+  Associate_Rating int(11),
+  KEY Associate_Id_1_idx (Associate_Id_1),
+  KEY Question_Id_1_idx (Question_Id_1),
+  KEY Module_Id_3_idx (Module_Id_3),
+  CONSTRAINT Associate_Id_1 FOREIGN KEY (Associate_Id_1) REFERENCES associate_info (Associate_Id),
+  CONSTRAINT Question_Id_1 FOREIGN KEY (Question_Id_1) REFERENCES questions (Question_Id),
+  CONSTRAINT Module_Id_3 FOREIGN KEY (Module_Id_3) REFERENCES module_info (Module_Id)
+);
+
+CREATE TABLE `login_details` (
+  `User_Id` CHAR(20),
+  `User_Password` CHAR(20)
+);

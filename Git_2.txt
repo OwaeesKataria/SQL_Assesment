@@ -1,0 +1,66 @@
+katar@Owais-MiBook MINGW64 ~/Documents
+$ git init
+Reinitialized existing Git repository in C:/Users/user/Documents/.git/
+
+katar@Owais-MiBook MINGW64 ~/Desktop
+$ git add feature1.txt
+
+katar@Owais-MiBook MINGW64 ~/Desktop
+$ git add feature.txt
+
+katar@Owais-MiBook MINGW64 ~/Desktop
+$ git commit - "feature1 and feature"
+error: pathspec '-' did not match any file(s) known to git
+error: pathspec 'feature1 and feature' did not match any file(s) known to git
+
+katar@Owais-MiBook MINGW64 ~/Desktop
+$ git commit -m "feature1 and feature"
+[master (root-commit) 42d2f17] feature1 and feature
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 feature.txt
+ create mode 100644 feature1.txt
+
+katar@Owais-MiBook MINGW64 ~/Desktop
+$ git branch develop
+
+katar@Owais-MiBook MINGW64 ~/Desktop
+$ git branch feature1
+
+katar@Owais-MiBook MINGW64 ~/Desktop
+$ git branch feature2
+
+katar@Owais-MiBook MINGW64 ~/Desktop
+$ git checkout  feature1
+Switched to branch 'feature1'
+
+katar@Owais-MiBook MINGW64 ~/Desktop
+$ touch new.txt
+
+katar@Owais-MiBook MINGW64 ~/Desktop
+$ git add ne.txt
+fatal: pathspec 'ne.txt' did not match any files
+
+katar@Owais-MiBook MINGW64 ~/Desktop
+$ git add new.txt
+
+katar@Owais-MiBook MINGW64 ~/Desktop
+$ git commit -m "add new.txt in feature1 branch"
+[feature1 7068131] add new.txt in feature1 branch
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 new.txt
+
+katar@Owais-MiBook MINGW64 ~/Desktop
+$ git checkout develop
+Switched to branch 'develop'
+
+katar@Owais-MiBook MINGW64 ~/Desktop
+$ touch demo.txt
+
+katar@Owais-MiBook MINGW64 ~/Desktop
+$ git add demo.txt
+
+katar@Owais-MiBook MINGW64 ~/Desktop
+$ git commit -m "add demo.txt in develope branch"
+[develop 3dc550f] add demo.txt in develope branch
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 demo.txt
